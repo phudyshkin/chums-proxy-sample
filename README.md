@@ -7,8 +7,8 @@ Chums Proxy example flutter application
 ## Getting Started
 
 In order to use Chums Proxy in your application, we need two flutter plugins: `inapp_web_view_proxy` and `chums_proxy`.
-* `flutter_inappwebview_proxy` is required in order to use [flutter_inappwebview](https://pub.dev/packages/flutter_inappwebview ) together with the local proxy.
-* `chums_proxy` - run a proxy service locally
+* [flutter_inappwebview_proxy](https://github.com/Chums-Team/flutter-inappwebview-proxy-plugin) is required in order to use [flutter_inappwebview](https://pub.dev/packages/flutter_inappwebview ) together with the local proxy.
+* [chums_proxy](https://github.com/Chums-Team/chums-proxy) - run a proxy service locally
 
 First, we need to run our local proxy:
 
