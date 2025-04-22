@@ -31,8 +31,11 @@ class _BrowserAppBarState extends State<BrowserAppBar> {
   }
 
   _focusNodeListener() {
-    if(!_focusNode.hasFocus) {
-      _controller.text = _browserController.url.value ?? _browserController.browserUrl.value ?? '';
+    if (!_focusNode.hasFocus) {
+      _controller.text =
+          _browserController.url.value ??
+          _browserController.browserUrl.value ??
+          '';
     }
   }
 
@@ -49,6 +52,15 @@ class _BrowserAppBarState extends State<BrowserAppBar> {
   Widget build(BuildContext context) => AppBar(
     toolbarHeight: 72,
     actionsPadding: EdgeInsets.only(right: 8),
+    leading: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      child: IconButton(
+        // padding: EdgeInsets.zero,
+        onPressed: () => _browserController.goHome(),
+        icon: Icon(Icons.home),
+      ),
+    ),
+    leadingWidth: 56,
     title: Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: TextField(
@@ -59,20 +71,18 @@ class _BrowserAppBarState extends State<BrowserAppBar> {
           border: OutlineInputBorder(),
           hintText: 'Enter address',
           suffixIcon: IconButton(
-              padding: EdgeInsets.zero,
-              iconSize: 20,
-              onPressed: () {
-                _controller.text = '';
-                _focusNode.requestFocus();
-              },
-              icon: Icon(
-                Icons.clear,
-                size: 20,
-              ),
-          )
+            padding: EdgeInsets.zero,
+            iconSize: 20,
+            onPressed: () {
+              _controller.text = '';
+              _focusNode.requestFocus();
+            },
+            icon: Icon(Icons.clear, size: 20),
+          ),
         ),
       ),
     ),
+    titleSpacing: 0,
     actions: [
       IconButton(
         onPressed: () => _browserController.refresh(),

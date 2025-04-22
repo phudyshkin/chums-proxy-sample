@@ -19,6 +19,8 @@ class _BrowserBodyState extends State<BrowserBody> {
   InAppWebViewController? _webViewController;
   late final InappWebViewProxy _browserProxyService;
 
+  double _loadProgress = 0;
+
   @override
   void initState() {
     super.initState();
@@ -28,6 +30,7 @@ class _BrowserBodyState extends State<BrowserBody> {
     _browserController.url.addListener(_onLoadUrl);
     _browserController.refreshPageAction.addActionListener(_onRefresh);
     _browserController.stopLoadAction.addActionListener(_onStopLoad);
+    _browserController.goHomeAction.addActionListener(_onGoHome);
   }
 
   _onLoadUrl() {
@@ -42,11 +45,21 @@ class _BrowserBodyState extends State<BrowserBody> {
     _webViewController?.stopLoading();
   }
 
+  _onGoHome(Action<Intent> action) {
+    _goHome();
+  }
+
+  _goHome() {
+    _webViewController?.loadFile(assetFilePath: 'assets/index.html');
+  }
+
+  bool get _loading => _loadProgress > 0 && _loadProgress < 100;
 
   @override
   void dispose() {
     _browserController.refreshPageAction.removeActionListener(_onRefresh);
     _browserController.stopLoadAction.removeActionListener(_onStopLoad);
+    _browserController.goHomeAction.removeActionListener(_onGoHome);
     _browserController.url.removeListener(_onLoadUrl);
     _webViewController?.dispose();
     _browserProxyService.dispose();
@@ -54,32 +67,46 @@ class _BrowserBodyState extends State<BrowserBody> {
   }
 
   @override
-  Widget build(BuildContext context) => InAppWebView(
-    initialSettings: InAppWebViewSettings(
-      useShouldOverrideUrlLoading: true,
-      useShouldInterceptRequest: true,
-      // We can not intercept requests in IOS, so we use custom scheme to intercept requests
-      resourceCustomSchemes: [if (Platform.isIOS) _browserProxyService.customProxyScheme],
-      preferredContentMode: UserPreferredContentMode.MOBILE,
-    ),
-    onWebViewCreated: _onWebViewCreated,
-    onLoadStart: _onLoadStart,
+  Widget build(BuildContext context) => Stack(
+    children: [
+      InAppWebView(
+        initialSettings: InAppWebViewSettings(
+          useShouldOverrideUrlLoading: true,
+          useShouldInterceptRequest: true,
+          // We can not intercept requests in IOS, so we use custom scheme to intercept requests
+          resourceCustomSchemes: [if (Platform.isIOS) _browserProxyService.customProxyScheme],
+        ),
+        onWebViewCreated: _onWebViewCreated,
+        onLoadStart: _onLoadStart,
+        onProgressChanged: _onProgressChanged,
+        // This is necessary to intercept requests from custom scheme.
+        shouldOverrideUrlLoading: _browserProxyService.onShouldOverrideUrlLoading,
 
-    // This is necessary to intercept requests from custom scheme.
-    shouldOverrideUrlLoading: _browserProxyService.onShouldOverrideUrlLoading,
+        // Intercept custom scheme requests in IOS
+        onLoadResourceWithCustomScheme: _browserProxyService.onLoadResourceWithCustomScheme,
 
-    // Intercept custom scheme requests in IOS
-    onLoadResourceWithCustomScheme: _browserProxyService.onLoadResourceWithCustomScheme,
-
-    // Intercept requests in Android
-    shouldInterceptRequest: _browserProxyService.onShouldInterceptRequest,
-    onReceivedError: _onReceivedError,
-    onReceivedHttpError: _onReceivedHttpError,
+        // Intercept requests in Android
+        shouldInterceptRequest: _browserProxyService.onShouldInterceptRequest,
+        onReceivedError: _onReceivedError,
+        onReceivedHttpError: _onReceivedHttpError,
+      ),
+      if(_loading)
+        SizedBox(
+          height: 5,
+          child: LinearProgressIndicator(
+            value: _loadProgress / 100,
+          ),
+        ),
+    ],
   );
 
   _onWebViewCreated(InAppWebViewController controller) {
     _webViewController = controller;
-    _loadUrl(_browserController.url.value);
+    if((_browserController.url.value?.trim() ?? '').isEmpty) {
+      _goHome();
+    } else {
+      _loadUrl(_browserController.url.value);
+    }
   }
 
   _loadUrl(final String? text) async {
@@ -87,6 +114,12 @@ class _BrowserBodyState extends State<BrowserBody> {
     if(request != null) {
       _webViewController?.loadUrl(urlRequest: request);
     }
+  }
+
+  void _onProgressChanged(_, int progress) {
+    setState(() {
+      _loadProgress = progress.toDouble();
+    });
   }
 
   void _onLoadStart(_, Uri? uri) {
