@@ -30,8 +30,8 @@ packages:
     description:
       path: chums_proxy
       ref: HEAD
-      resolved-ref: "81ca7a952bb7a1a8d2c76911dd9cade570911862"
-      url: "https://github.com/phudyshkin/flutter-chums-proxy.git"
+      resolved-ref: "3c783a11dafa6adb55fe070fca8a1d76862bf354"
+      url: "https://github.com/Chums-Team/flutter-chums-proxy.git"
     source: git
     version: "0.0.1"
   chums_proxy_android:
@@ -39,8 +39,8 @@ packages:
     description:
       path: chums_proxy_android
       ref: HEAD
-      resolved-ref: "81ca7a952bb7a1a8d2c76911dd9cade570911862"
-      url: "https://github.com/phudyshkin/flutter-chums-proxy.git"
+      resolved-ref: "3c783a11dafa6adb55fe070fca8a1d76862bf354"
+      url: "https://github.com/Chums-Team/flutter-chums-proxy.git"
     source: git
     version: "0.0.1"
   chums_proxy_ios:
@@ -48,8 +48,8 @@ packages:
     description:
       path: chums_proxy_ios
       ref: HEAD
-      resolved-ref: "81ca7a952bb7a1a8d2c76911dd9cade570911862"
-      url: "https://github.com/phudyshkin/flutter-chums-proxy.git"
+      resolved-ref: "3c783a11dafa6adb55fe070fca8a1d76862bf354"
+      url: "https://github.com/Chums-Team/flutter-chums-proxy.git"
     source: git
     version: "0.0.1"
   clock:
@@ -166,8 +166,8 @@ packages:
     description:
       path: flutter_inappwebview_proxy
       ref: HEAD
-      resolved-ref: a767bfdd78e2551642c35326ab6c036e428cca98
-      url: "https://github.com/phudyshkin/flutter-inappwebview-proxy-plugin.git"
+      resolved-ref: b6c37d914df94f98df14e5303b8b904de57338e6
+      url: "https://github.com/Chums-Team/flutter-inappwebview-proxy-plugin.git"
     source: git
     version: "0.0.1"
   flutter_inappwebview_proxy_android:
@@ -175,8 +175,8 @@ packages:
     description:
       path: flutter_inappwebview_proxy_android
       ref: HEAD
-      resolved-ref: a767bfdd78e2551642c35326ab6c036e428cca98
-      url: "https://github.com/phudyshkin/flutter-inappwebview-proxy-plugin.git"
+      resolved-ref: b6c37d914df94f98df14e5303b8b904de57338e6
+      url: "https://github.com/Chums-Team/flutter-inappwebview-proxy-plugin.git"
     source: git
     version: "0.0.1"
   flutter_inappwebview_proxy_ios:
@@ -184,8 +184,8 @@ packages:
     description:
       path: flutter_inappwebview_proxy_ios
       ref: HEAD
-      resolved-ref: a767bfdd78e2551642c35326ab6c036e428cca98
-      url: "https://github.com/phudyshkin/flutter-inappwebview-proxy-plugin.git"
+      resolved-ref: b6c37d914df94f98df14e5303b8b904de57338e6
+      url: "https://github.com/Chums-Team/flutter-inappwebview-proxy-plugin.git"
     source: git
     version: "0.0.1"
   flutter_inappwebview_web:

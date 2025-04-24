@@ -38,11 +38,11 @@ dependencies:
   provider: ^6.1.4
   flutter_inappwebview_proxy:
     git:
-      url: https://github.com/phudyshkin/flutter-inappwebview-proxy-plugin.git
+      url: https://github.com/Chums-Team/flutter-inappwebview-proxy-plugin.git
       path: flutter_inappwebview_proxy
   chums_proxy:
     git:
-      url: https://github.com/phudyshkin/flutter-chums-proxy.git
+      url: https://github.com/Chums-Team/flutter-chums-proxy.git
       path: chums_proxy
 
 dev_dependencies:
