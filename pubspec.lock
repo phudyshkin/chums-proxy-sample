@@ -30,7 +30,7 @@ packages:
     description:
       path: chums_proxy
       ref: HEAD
-      resolved-ref: "3c783a11dafa6adb55fe070fca8a1d76862bf354"
+      resolved-ref: "92f87a084ccf818493e9c89fb9d935bf19e0db6a"
       url: "https://github.com/Chums-Team/flutter-chums-proxy.git"
     source: git
     version: "0.0.1"
@@ -39,7 +39,7 @@ packages:
     description:
       path: chums_proxy_android
       ref: HEAD
-      resolved-ref: "3c783a11dafa6adb55fe070fca8a1d76862bf354"
+      resolved-ref: "92f87a084ccf818493e9c89fb9d935bf19e0db6a"
       url: "https://github.com/Chums-Team/flutter-chums-proxy.git"
     source: git
     version: "0.0.1"
@@ -48,7 +48,7 @@ packages:
     description:
       path: chums_proxy_ios
       ref: HEAD
-      resolved-ref: "3c783a11dafa6adb55fe070fca8a1d76862bf354"
+      resolved-ref: "92f87a084ccf818493e9c89fb9d935bf19e0db6a"
       url: "https://github.com/Chums-Team/flutter-chums-proxy.git"
     source: git
     version: "0.0.1"
